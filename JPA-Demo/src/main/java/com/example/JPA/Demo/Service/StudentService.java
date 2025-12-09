@@ -22,7 +22,7 @@ public class StudentService {
     }
 
     public Student getStudentbyrno(int rno) {
-        return studentRepo.findById(rno) .orElse(new Student());
+        return studentRepo.findById(rno) .orElse(null);
     }
 
     public void updateStudent(Student student) {
@@ -35,5 +35,13 @@ public class StudentService {
 
     public void clearstudent() {
         studentRepo.deleteAll();
+    }
+
+    public List<Student> getStudentsByTech(String tech) {
+       return studentRepo.findByTechnology(tech);
+    }
+
+    public List<Student> filterStudents(String gender, String technology) {
+        return studentRepo.findByGenderAndTechnology(gender,technology);
     }
 }
